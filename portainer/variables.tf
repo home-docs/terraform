@@ -33,3 +33,8 @@ variable "docker_config_path" {
   description = "The path for Docker configurations."
   type        = string
 }
+
+variable "docker_data_path" {
+  description = "The path for Docker data."
+  type        = string
+}

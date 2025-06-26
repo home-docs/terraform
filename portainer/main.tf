@@ -24,6 +24,33 @@ resource "portainer_stack" "calibre_web" {
   })
 }
 
+resource "portainer_stack" "drawio" {
+  name            = "drawio"
+  deployment_type = "standalone"
+  method          = "string"
+  endpoint_id     = var.portainer_endpoint_id
+  stack_file_content = templatefile("${path.module}/compose-files/drawio.yml.tpl", {
+    docker_user_puid   = var.docker_user_puid
+    docker_user_pgid   = var.docker_user_pgid
+    docker_timezone    = var.docker_timezone
+    docker_config_path = var.docker_config_path
+  })
+}
+
+resource "portainer_stack" "gluetun" {
+  name            = "gluetun"
+  deployment_type = "standalone"
+  method          = "string"
+  endpoint_id     = var.portainer_endpoint_id
+  stack_file_content = templatefile("${path.module}/compose-files/gluetun.yml.tpl", {
+    docker_user_puid   = var.docker_user_puid
+    docker_user_pgid   = var.docker_user_pgid
+    docker_timezone    = var.docker_timezone
+    docker_config_path = var.docker_config_path
+    docker_data_path   = var.docker_data_path
+  })
+}
+
 resource "portainer_stack" "kometa" {
   name            = "kometa"
   deployment_type = "standalone"
@@ -43,6 +70,19 @@ resource "portainer_stack" "vaultwarden" {
   method          = "string"
   endpoint_id     = var.portainer_endpoint_id
   stack_file_content = templatefile("${path.module}/compose-files/vaultwarden.yml.tpl", {
+    docker_user_puid   = var.docker_user_puid
+    docker_user_pgid   = var.docker_user_pgid
+    docker_timezone    = var.docker_timezone
+    docker_config_path = var.docker_config_path
+  })
+}
+
+resource "portainer_stack" "watchtower" {
+  name            = "watchtower"
+  deployment_type = "standalone"
+  method          = "string"
+  endpoint_id     = var.portainer_endpoint_id
+  stack_file_content = templatefile("${path.module}/compose-files/watchtower.yml.tpl", {
     docker_user_puid   = var.docker_user_puid
     docker_user_pgid   = var.docker_user_pgid
     docker_timezone    = var.docker_timezone
