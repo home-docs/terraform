@@ -8,6 +8,7 @@ services:
       - PGID=${docker_user_pgid}
       - TZ=${docker_timezone}
       - DOMAIN:"https://vaultwarden.ketwork.in"
+      - SIGNUPS_ALLOWED=false
     volumes:
       - ${docker_config_path}/vaultwarden/config:/data/
     ports:
