@@ -38,3 +38,9 @@ variable "docker_data_path" {
   description = "The path for Docker data."
   type        = string
 }
+
+variable "vaultwarden_encryption_password" {
+  description = "The encryption password for Vaultwarden."
+  type        = string
+  sensitive   = true
+}
