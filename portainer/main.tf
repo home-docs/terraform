@@ -51,6 +51,20 @@ resource "portainer_stack" "gluetun" {
   })
 }
 
+resource "portainer_stack" "karakeep" {
+  name            = "karakeep"
+  deployment_type = "standalone"
+  method          = "string"
+  endpoint_id     = var.portainer_endpoint_id
+  stack_file_content = templatefile("${path.module}/compose-files/karakeep.yml.tpl", {
+    docker_config_path              = var.docker_config_path
+    karakeep_meilisearch_master_key = var.karakeep_meilisearch_master_key
+    karakeep_nextauth_secret        = var.karakeep_nextauth_secret
+    karakeep_nextauth_url           = var.karakeep_nextauth_url
+    gemini_api_key                  = var.gemini_api_key
+  })
+}
+
 resource "portainer_stack" "kometa" {
   name            = "kometa"
   deployment_type = "standalone"

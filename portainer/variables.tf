@@ -55,3 +55,26 @@ variable "semaphore_admin_email" {
   description = "The admin email for Semaphore."
   type        = string
 }
+
+variable "karakeep_meilisearch_master_key" {
+  description = "The master key for Meilisearch in Karakeep."
+  type        = string
+  sensitive   = true
+}
+
+variable "karakeep_nextauth_secret" {
+  description = "The NextAuth secret for Karakeep."
+  type        = string
+  sensitive   = true
+}
+
+variable "karakeep_nextauth_url" {
+  description = "The NextAuth URL for Karakeep."
+  type        = string
+}
+
+variable "gemini_api_key" {
+  description = "The Gemini API key for Karakeep."
+  type        = string
+  sensitive   = true
+}
