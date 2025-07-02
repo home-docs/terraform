@@ -21,9 +21,14 @@ services:
       - vaultwarden
     environment:
       - ENCRYPTION_PASSWORD=${vaultwarden_encryption_password}
-      - DELETE_AFTER=7
       - CRON_TIME=0 */6 * * *
       - TZ=${docker_timezone}
+      - BACKUP_ADD_DATABASE=true
+      - BACKUP_ADD_ATTACHMENTS=true
+      - BACKUP_ADD_CONFIG_JSON=true
+      - BACKUP_ADD_RSA_KEY=true
+      - BACKUP_ADD_SENDS=true
+      - BACKUP_ON_STARTUP=true
     volumes:
       - ${docker_config_path}/vaultwarden/data:/data/
       - ${docker_config_path}/vaultwarden/backup:/backup/

@@ -44,3 +44,14 @@ variable "vaultwarden_encryption_password" {
   type        = string
   sensitive   = true
 }
+
+variable "semaphore_admin_password" {
+  description = "The database password for Semaphore."
+  type        = string
+  sensitive   = true
+}
+
+variable "semaphore_admin_email" {
+  description = "The admin email for Semaphore."
+  type        = string
+}
