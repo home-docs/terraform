@@ -26,7 +26,36 @@ services:
       - "8989:8989/tcp" # sonarr
       - "6767:6767/tcp" # bazarr
       - "3080:3000/tcp" # chromium
+      - "9705:9705/tcp" # huntarr
+      - "11011:11011/tcp" # cleanuparr
     restart: always
+
+  huntarr:
+    image: huntarr/huntarr:latest
+    container_name: huntarr
+    network_mode: "service:gluetun"
+    depends_on: [gluetun]
+    environment:
+      - PUID=${docker_user_puid}
+      - PGID=${docker_user_pgid}
+      - TZ=${docker_timezone}
+    volumes:
+      - ${docker_config_path}/huntarr:/config
+    restart: always
+
+  cleanuparr:
+    image: ghcr.io/cleanuparr/cleanuparr:latest
+    container_name: cleanuparr
+    network_mode: "service:gluetun"
+    depends_on: [gluetun]
+    restart: unless-stopped
+    environment:
+      - PORT=11011
+      - PUID=${docker_user_puid}
+      - PGID=${docker_user_pgid}
+      - TZ=${docker_timezone}
+    volumes:
+      - ${docker_config_path}/cleanuparr/config:/config
 
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
