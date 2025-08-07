@@ -78,3 +78,14 @@ variable "gemini_api_key" {
   type        = string
   sensitive   = true
 }
+
+variable "couchdb_user" {
+  description = "CouchDB username for obsidian live sync"
+  type        = string
+}
+
+variable "couchdb_password" {
+  description = "CouchDB password for obsidian live sync"
+  type        = string
+  sensitive   = true
+}

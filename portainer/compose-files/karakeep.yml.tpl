@@ -41,4 +41,15 @@ services:
       - MEILI_NO_ANALYTICS=true
       - MEILI_MASTER_KEY=${karakeep_meilisearch_master_key}
     volumes:
-      - ${docker_config_path}/karakeep/meilisearch:/meili_data
+      - ${docker_config_path}/karakeep/meilisearch:/meili_data  
+  karakeep-homedash:
+    image: ghcr.io/codejawn/karakeep-homedash:latest
+    container_name: karakeep-homedash
+    ports:
+      - "8595:8595"
+    volumes:
+      # Update path to your KaraKeep database
+      - ${docker_config_path}/karakeep/data/db.db:/app/db.db:ro
+      # Config directory for persistence
+      - ${docker_config_path}/karakeep/homedash:/app/config
+    restart: unless-stopped

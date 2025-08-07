@@ -107,6 +107,34 @@ resource "portainer_stack" "semaphore" {
   })
 }
 
+resource "portainer_stack" "obsidian_livesync" {
+  name            = "obsidian_livesync"
+  deployment_type = "standalone"
+  method          = "string"
+  endpoint_id     = var.portainer_endpoint_id
+  stack_file_content = templatefile("${path.module}/compose-files/obsidian-livesync.yml.tpl", {
+    docker_user_puid   = var.docker_user_puid
+    docker_user_pgid   = var.docker_user_pgid
+    docker_timezone    = var.docker_timezone
+    docker_config_path = var.docker_config_path
+    couchdb_user       = var.couchdb_user
+    couchdb_password   = var.couchdb_password
+  })
+}
+
+resource "portainer_stack" "open_webui" {
+  name            = "open_webui"
+  deployment_type = "standalone"
+  method          = "string"
+  endpoint_id     = var.portainer_endpoint_id
+  stack_file_content = templatefile("${path.module}/compose-files/open-webui.yml.tpl", {
+    docker_user_puid   = var.docker_user_puid
+    docker_user_pgid   = var.docker_user_pgid
+    docker_timezone    = var.docker_timezone
+    docker_config_path = var.docker_config_path
+  })
+}
+
 resource "portainer_stack" "watchtower" {
   name            = "watchtower"
   deployment_type = "standalone"
