@@ -24,6 +24,19 @@ resource "portainer_stack" "calibre_web" {
   })
 }
 
+resource "portainer_stack" "chrome" {
+  name            = "chrome"
+  deployment_type = "standalone"
+  method          = "string"
+  endpoint_id     = var.portainer_endpoint_id
+  stack_file_content = templatefile("${path.module}/compose-files/chrome.yml.tpl", {
+    docker_user_puid   = var.docker_user_puid
+    docker_user_pgid   = var.docker_user_pgid
+    docker_timezone    = var.docker_timezone
+    docker_config_path = var.docker_config_path
+  })
+}
+
 resource "portainer_stack" "drawio" {
   name            = "drawio"
   deployment_type = "standalone"
