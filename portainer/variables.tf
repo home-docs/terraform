@@ -89,3 +89,14 @@ variable "couchdb_password" {
   type        = string
   sensitive   = true
 }
+
+variable "obsidian_web_user" {
+  description = "Obsidian Web username"
+  type        = string
+}
+
+variable "obsidian_web_password" {
+  description = "Obsidian Web password"
+  type        = string
+  sensitive   = true
+}
