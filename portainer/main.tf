@@ -137,18 +137,33 @@ resource "portainer_stack" "obsidian_livesync" {
   })
 }
 
-# resource "portainer_stack" "open_webui" {
-#   name            = "open_webui"
+# resource "portainer_stack" "workout_cool" {
+#   name            = "workout_cool"
 #   deployment_type = "standalone"
 #   method          = "string"
 #   endpoint_id     = var.portainer_endpoint_id
-#   stack_file_content = templatefile("${path.module}/compose-files/open-webui.yml.tpl", {
-#     docker_user_puid   = var.docker_user_puid
-#     docker_user_pgid   = var.docker_user_pgid
-#     docker_timezone    = var.docker_timezone
-#     docker_config_path = var.docker_config_path
+#   stack_file_content = templatefile("${path.module}/compose-files/workout.yml.tpl", {
+#     docker_user_puid               = var.docker_user_puid
+#     docker_user_pgid               = var.docker_user_pgid
+#     docker_timezone                = var.docker_timezone
+#     docker_config_path             = var.docker_config_path
+#     workout_cool_postgres_user     = var.workout_cool_postgres_user
+#     workout_cool_postgres_password = var.workout_cool_postgres_password
 #   })
 # }
+
+resource "portainer_stack" "open_webui" {
+  name            = "open_webui"
+  deployment_type = "standalone"
+  method          = "string"
+  endpoint_id     = var.portainer_endpoint_id
+  stack_file_content = templatefile("${path.module}/compose-files/open-webui.yml.tpl", {
+    docker_user_puid   = var.docker_user_puid
+    docker_user_pgid   = var.docker_user_pgid
+    docker_timezone    = var.docker_timezone
+    docker_config_path = var.docker_config_path
+  })
+}
 
 resource "portainer_stack" "watchtower" {
   name            = "watchtower"

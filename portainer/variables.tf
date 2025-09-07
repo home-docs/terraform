@@ -100,3 +100,14 @@ variable "obsidian_web_password" {
   type        = string
   sensitive   = true
 }
+
+variable "workout_cool_postgres_user" {
+  description = "Postgres username for Workout Cool"
+  type        = string
+}
+
+variable "workout_cool_postgres_password" {
+  description = "Postgres password for Workout Cool"
+  type        = string
+  sensitive   = true
+}

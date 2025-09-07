@@ -7,5 +7,6 @@ services:
       - PUID= ${docker_user_puid}
       - PGID= ${docker_user_pgid}
       - TZ= ${docker_timezone}
+      - OLLAMA_BASE_URL=https://ollama.ketwork.in
     volumes:
       - ${docker_config_path}/open-webui/data:/app/backend/data
