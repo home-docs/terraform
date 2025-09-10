@@ -12,6 +12,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `terraform validate` - Validate Terraform configuration syntax
 - `terraform destroy` - Destroy managed infrastructure (use with extreme caution)
 
+### Required Terraform Workflow
+**IMPORTANT**: Always follow this sequence when making changes:
+
+1. **Format**: Run `terraform fmt` after making any changes to `.tf` files
+2. **Validate**: Run `terraform validate` to check configuration syntax  
+3. **Plan**: Run `terraform plan` to review what changes will be applied
+4. **Apply**: Only run `terraform apply` after confirming the plan is correct
+
+Never skip validation and planning steps before applying changes.
+
 ### Helper Scripts
 - `.directives/sync-to-copilot.sh` - Sync Terraform coding standards to `.copilot.json`
 - `.directives/gemini-terraform.sh "prompt"` - Run Gemini CLI with Terraform directives

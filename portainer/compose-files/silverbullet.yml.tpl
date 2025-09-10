@@ -3,9 +3,8 @@ services:
     image: zefhemel/silverbullet
     container_name: silverbullet
     restart: unless-stopped
+    user: "${docker_user_puid}:${docker_user_pgid}"
     environment:
-      - PUID=${docker_user_puid}
-      - PGID=${docker_user_pgid}
       - TZ=${docker_timezone}
     volumes:
       - ${docker_config_path}/silverbullet/space:/space:rw
