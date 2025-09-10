@@ -92,3 +92,10 @@ This is a multi-provider Terraform configuration organized into modular componen
 - Document all input variables with descriptions and types
 - Include module-level `README.md` with usage instructions
 - Use examples folder for sample module usage
+
+## Git Workflow
+
+**IMPORTANT**: Never make git commits directly via automation. When asked to commit changes:
+1. Remind the user to review changes in VS Code first
+2. Let the user stage and commit manually through VS Code interface or command line
+3. This ensures proper review and control over git history
