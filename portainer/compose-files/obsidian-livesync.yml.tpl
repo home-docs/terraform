@@ -1,25 +1,4 @@
 services:
-  obsidian:
-    image: lscr.io/linuxserver/obsidian:latest
-    container_name: obsidian
-    environment:
-      - PUID=${docker_user_puid}
-      - PGID=${docker_user_pgid}
-      - TZ=${docker_timezone}
-      - CUSTOM_USER=${obsidian_web_user}
-      - PASSWORD=${obsidian_web_password}
-    volumes:
-      - ${docker_config_path}/obsidian:/config
-    ports:
-      - 9876:3000    # HTTP (for proxying only)
-      - 9877:3001    # HTTPS
-    devices:
-      - /dev/dri:/dev/dri # if GPU acceleration is required
-    shm_size: "2gb"
-    restart: unless-stopped
-    security_opt:
-      - seccomp=unconfined
-
   couchdb:
     image: couchdb:latest
     container_name: couchdb-for-ols
