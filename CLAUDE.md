@@ -22,9 +22,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Never skip validation and planning steps before applying changes.
 
-### Helper Scripts
-- `.directives/sync-to-copilot.sh` - Sync Terraform coding standards to `.copilot.json`
-- `.directives/gemini-terraform.sh "prompt"` - Run Gemini CLI with Terraform directives
 
 ## Architecture Overview
 
