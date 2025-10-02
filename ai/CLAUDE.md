@@ -40,6 +40,20 @@ This is a multi-module Terraform project for managing infrastructure and contain
 - Variables include Docker user settings, paths, and service-specific secrets
 - rwmarkable: Self-hosted checklist and note-taking app, accessible at rw.ketwork.in, port 5230
 
+#### Important: Docker Compose Template Variables
+- Template files (*.yml.tpl) use Terraform's `templatefile()` function for variable substitution
+- **CRITICAL**: Use single `${variable}` syntax in .tpl files, NOT double `$${variable}`
+- Double `$$` escapes the variable, causing Portainer to receive literal variable names instead of values
+- Example issue: `$${docker_user_puid}` passes the string "${docker_user_puid}" instead of "1001"
+- Always verify template substitution in `terraform plan` output before applying
+
+#### Ansible Playbook for Host Preparation
+- An Ansible playbook exists on the Caddy server for preparing Docker hosts
+- Located at: (path on Caddy server for portainer setup playbook)
+- Creates necessary directories with proper ownership (PUID/PGID 1001:1001)
+- If encountering permission errors with new stacks, run this playbook to ensure directories exist with correct permissions
+- Playbook creates directory structure: /docker/{app_name}/{data,config,cache}
+
 ## Development Commands
 
 ```bash
