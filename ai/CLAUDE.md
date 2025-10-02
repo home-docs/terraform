@@ -29,13 +29,16 @@ This is a multi-module Terraform project for managing infrastructure and contain
 - Manages DNS A records using a map-based configuration
 - Supports proxied/non-proxied records with configurable TTL
 - Variables include API token, account ID, zone ID, and A records map
+- External records (proxied=true): homeassistant, immich, jellyfin, jellyseerr, karakeep, obsidianlivesync, ollama, overseerr, plex, rw (rwmarkable), vaultwarden
+- All external records point to 15.235.186.122
 
 ### Portainer Module
 - Deploys Docker stacks via Portainer API
-- Active stacks: gluetun (VPN), karakeep (note-taking), kometa (media management), obsidian_livesync (sync), open_webui (AI interface), watchtower (container updates)
+- Active stacks: gluetun (VPN), karakeep (note-taking), kometa (media management), obsidian_livesync (sync), open_webui (AI interface), rwmarkable (checklist/notes), watchtower (container updates)
 - Commented stacks: calibre_web, chrome, drawio, vaultwarden, semaphore, workout_cool, silverbullet
 - Uses Docker Compose templates with variable substitution
 - Variables include Docker user settings, paths, and service-specific secrets
+- rwmarkable: Self-hosted checklist and note-taking app, accessible at rw.ketwork.in, port 5230
 
 ## Development Commands
 
